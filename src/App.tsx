@@ -1,20 +1,58 @@
+import { useEffect, useState } from "react";
 import { Clock } from "./components/Clock";
 import { Weather } from "./components/Weather";
 import { News } from "./components/News";
 import { Efemerides } from "./components/Efemerides";
 import { NextFeriado } from "./components/NextFeriado";
+import { Dolar } from "./components/Dolar";
 
 function App() {
-  return (
-    <div className="min-h-screen bg-gray-100 p-4">
-      <h1 className="text-3xl font-bold mb-6">🚌 Mientras Espero el Bondi</h1>
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <Weather className="lg:col-span-1" />
-        <Clock className="col-span-1" />
-        <Efemerides className="lg:col-span-2" />
-        <NextFeriado className="lg:col-span-2" />
-        <News className="md:col-span-2" />
+  useEffect(() => {
+    const savedMode = localStorage.getItem("theme");
+    if (savedMode === "dark") {
+      document.documentElement.classList.add("dark");
+      setIsDarkMode(true);
+    }
+  }, []);
+
+  const toggleDarkMode = () => {
+    const html = document.documentElement;
+    if (html.classList.contains("dark")) {
+      html.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+      setIsDarkMode(false);
+    } else {
+      html.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+      setIsDarkMode(true);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 py-6 px-4 flex justify-center text-black dark:text-white">
+      <div className="w-full max-w-6xl">
+        <div className="flex justify-between items-center mb-6">
+          <h1 className="text-3xl font-bold text-center w-full">
+            🚌 Mientras Espero el Bondi
+          </h1>
+          <button
+            onClick={toggleDarkMode}
+            className="absolute right-4 top-4 px-3 py-1 rounded bg-gray-200 dark:bg-gray-700 text-sm"
+          >
+            {isDarkMode ? "☀️ Modo Claro" : "🌙 Modo Oscuro"}
+          </button>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <Weather />
+          <Clock />
+          <Efemerides />
+          <NextFeriado />
+          <News />
+          <Dolar />
+        </div>
       </div>
     </div>
   );
