@@ -1,7 +1,11 @@
 import React from "react";
 import { mockFeriado } from "../mocks/mockData";
 
-export const NextFeriado: React.FC = () => {
+type NextFeriadoProps = {
+  className?: string;
+};
+
+export const NextFeriado: React.FC<NextFeriadoProps> = ({ className = "" }) => {
   const today = new Date();
   const feriadoDate = new Date(mockFeriado.date);
 
@@ -9,7 +13,7 @@ export const NextFeriado: React.FC = () => {
   const daysLeft = Math.ceil(diffInTime / (1000 * 3600 * 24));
 
   return (
-    <div className="bg-white p-4 rounded-xl shadow h-full min-h-[100px]">
+    <div className={`bg-white p-4 rounded-xl shadow h-full min-h-[100px] ${className}`}>
       <h2 className="text-xl font-bold mb-2">🇦🇷 Próximo Feriado</h2>
       <p className="font-semibold">{mockFeriado.name}</p>
       <p>{feriadoDate.toLocaleDateString("es-AR")}</p>

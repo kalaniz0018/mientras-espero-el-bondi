@@ -1,6 +1,10 @@
 import React from "react";
 
-export const Clock: React.FC = () => {
+type ClockProps = {
+  className?: string;
+};
+
+export const Clock: React.FC<ClockProps> = ({ className = "" }) => {
   const now = new Date();
   const dateStr = now.toLocaleDateString("es-AR", {
     weekday: "long",
@@ -10,7 +14,7 @@ export const Clock: React.FC = () => {
   });
 
   return (
-    <div className="bg-white p-4 rounded-xl shadow h-full  min-h-[100px] overflow-auto">
+    <div className={`bg-white p-4 rounded-xl shadow h-full min-h-[100px] ${className}`}>
       <h2 className="text-xl font-bold mb-2">📅 Fecha</h2>
       <p>{dateStr}</p>
     </div>
