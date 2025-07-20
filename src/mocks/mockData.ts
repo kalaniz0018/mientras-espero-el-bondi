@@ -1,0 +1,22 @@
+export const mockWeather = {
+  temperature: "22°C",
+  condition: "Soleado",
+  location: "Buenos Aires",
+};
+
+export const mockNews = [
+  { title: "El dólar volvió a subir", source: "La Nación" },
+  { title: "Nuevas medidas económicas", source: "Clarín" },
+  { title: "Marchas en el centro", source: "Página 12" },
+];
+
+export const mockEfemerides = [
+  "1816: Se firma la Independencia Argentina.",
+  "1930: Nace el escritor Ernesto Sábato.",
+  "2001: Argentina entra en default.",
+];
+
+export const mockFeriado = {
+  name: "Día del Respeto a la Diversidad Cultural",
+  date: "2025-10-12",
+};
