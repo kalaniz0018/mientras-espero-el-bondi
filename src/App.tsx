@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Clock } from "./components/Clock";
-import { Weather } from "./components/Weather";
+/* import { Clock } from "./components/Clock";
+ */ import { Weather } from "./components/Weather";
 import { News } from "./components/News";
 import { Efemerides } from "./components/Efemerides";
 import { NextFeriado } from "./components/NextFeriado";
@@ -37,6 +37,14 @@ function App() {
           <h1 className="text-3xl font-bold text-center sm:text-left">
             🚌 Mientras Espero el Bondi
           </h1>
+          <p className="text-sm text-gray-600 dark:text-gray-300 sm:ml-4">
+            {new Date().toLocaleDateString("es-AR", {
+              weekday: "long",
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            })}
+          </p>
           <button
             onClick={toggleDarkMode}
             className="px-3 py-1 rounded bg-gray-200 dark:bg-gray-700 text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition"
@@ -46,12 +54,13 @@ function App() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <Weather />
-          <Clock />
-          <Efemerides />
-          <NextFeriado />
           <News />
+          <Weather />
+          {/*  <Clock /> */}
+
+          <NextFeriado />
           <Dolar />
+          <Efemerides />
         </div>
       </div>
     </div>
