@@ -33,13 +33,13 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 py-6 px-4 flex justify-center text-black dark:text-white">
       <div className="w-full max-w-6xl">
-        <div className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-bold text-center w-full">
+        <div className="flex flex-col sm:flex-row sm:justify-between items-center mb-6 gap-2">
+          <h1 className="text-3xl font-bold text-center sm:text-left">
             🚌 Mientras Espero el Bondi
           </h1>
           <button
             onClick={toggleDarkMode}
-            className="absolute right-4 top-4 px-3 py-1 rounded bg-gray-200 dark:bg-gray-700 text-sm"
+            className="px-3 py-1 rounded bg-gray-200 dark:bg-gray-700 text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition"
           >
             {isDarkMode ? "☀️ Modo Claro" : "🌙 Modo Oscuro"}
           </button>
