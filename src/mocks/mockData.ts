@@ -24,3 +24,18 @@ export const mockHoroscopo = {
   signo: "Leo",
   mensaje: "Hoy es un buen día para tomar decisiones importantes y enfocarte en tus metas personales.",
 };
+
+export const mockDescuentos = [
+  {
+    supermercado: "Carrefour",
+    promo: "20% de descuento con tarjetas Visa los miércoles",
+  },
+  {
+    supermercado: "Coto",
+    promo: "2x1 en carnes seleccionadas (solo lunes y martes)",
+  },
+  {
+    supermercado: "Día",
+    promo: "15% con Cuenta DNI de lunes a jueves",
+  },
+];

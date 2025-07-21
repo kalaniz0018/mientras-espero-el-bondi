@@ -5,6 +5,7 @@ import { Efemerides } from "./components/Efemerides";
 import { NextFeriado } from "./components/NextFeriado";
 import { Dolar } from "./components/Dolar";
 import { Horoscopo } from "./components/Horoscopo";
+import { Descuentos } from "./components/Descuentos";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -60,6 +61,7 @@ function App() {
           <Dolar />
           <Efemerides />
           <Horoscopo />
+          <Descuentos />
         </div>
       </div>
     </div>
