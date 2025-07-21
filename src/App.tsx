@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-/* import { Clock } from "./components/Clock";
- */ import { Weather } from "./components/Weather";
+import { Weather } from "./components/Weather";
 import { News } from "./components/News";
 import { Efemerides } from "./components/Efemerides";
 import { NextFeriado } from "./components/NextFeriado";
 import { Dolar } from "./components/Dolar";
+import { Horoscopo } from "./components/Horoscopo";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -56,11 +56,10 @@ function App() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <News />
           <Weather />
-          {/*  <Clock /> */}
-
           <NextFeriado />
           <Dolar />
           <Efemerides />
+          <Horoscopo />
         </div>
       </div>
     </div>

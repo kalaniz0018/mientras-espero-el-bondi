@@ -20,3 +20,7 @@ export const mockFeriado = {
   name: "Día del Respeto a la Diversidad Cultural",
   date: "2025-10-12",
 };
+export const mockHoroscopo = {
+  signo: "Leo",
+  mensaje: "Hoy es un buen día para tomar decisiones importantes y enfocarte en tus metas personales.",
+};
