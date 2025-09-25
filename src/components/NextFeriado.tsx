@@ -125,7 +125,16 @@ export const NextFeriado: React.FC<NextFeriadoProps> = ({ className = "" }) => {
 
   return (
     <div className={className}>
-      <Card title="Próximo Feriado" icon={cardIcon}>
+      <Card 
+  title={
+    isOngoing && isStartToday
+       ? `🎉 ¡Hoy es ${next.name}!`
+      : isOngoing
+      ? "En curso"
+      : "Próximo Feriado"
+  }
+  icon={cardIcon}
+>
         {/* HERO */}
         {isOngoing && isStartToday ? (
           // 🎉 Primer día del feriado (no mostrar números)
