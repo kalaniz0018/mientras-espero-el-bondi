@@ -59,13 +59,14 @@ function App() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-6">
-          <News  className="sm:col-span-2"/>
-          <Weather />
+          <News className="sm:col-span-2" />
           <NextFeriado />
+          <Weather />
           <Dolar />
-          <Efemerides />
-          <Horoscopo className="sm:col-span-2" />
           <Descuentos />
+          <Efemerides />
+
+          <Horoscopo className="sm:col-span-2" />
         </div>
       </div>
     </div>
