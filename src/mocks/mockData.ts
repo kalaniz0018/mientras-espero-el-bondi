@@ -16,10 +16,14 @@ export const mockEfemerides = [
   "2001: Argentina entra en default.",
 ];
 
-export const mockFeriado = {
-  name: "Día del Respeto a la Diversidad Cultural",
-  date: "2025-10-12",
-};
+export const mockFeriado = [
+  { name: "Día del Respeto a la Diversidad Cultural", startDate: "2025-03-03", endDate: "2025-03-04" },
+  { name: "Viernes Santo", startDate: "2025-04-18" },
+  { name: "Día del Trabajador", startDate: "2025-05-01" },
+  { name: "Paso a la Inmortalidad de Güemes", startDate: "2025-06-17" },
+  { name: "Día de la Bandera", startDate: "2025-06-20" },
+  { name: "Carnaval", startDate: "2025-03-03", endDate: "2025-03-04" }
+];
 export const mockHoroscopo = {
   signo: "Leo",
   mensaje: "Hoy es un buen día para tomar decisiones importantes y enfocarte en tus metas personales.",
