@@ -1,4 +1,5 @@
 import React from "react";
+import { Card } from "./UI/Card";
 
 type ClockProps = {
   className?: string;
@@ -14,9 +15,10 @@ export const Clock: React.FC<ClockProps> = ({ className = "" }) => {
   });
 
   return (
-    <div className={`bg-white dark:bg-gray-800 text-black dark:text-white bg-white p-4 rounded-xl shadow h-full min-h-[100px] ${className}`}>
-      <h2 className="text-xl font-bold mb-2">📅 Fecha</h2>
-      <p>{dateStr}</p>
+    <div className={className}>
+      <Card title="Fecha" icon="📅">
+        <p className="text-base">{dateStr}</p>
+      </Card>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import { mockDescuentos } from "../mocks/mockData";
+import { Card } from "./UI/Card";
 
 type DescuentosProps = {
   className?: string;
@@ -7,17 +8,17 @@ type DescuentosProps = {
 
 export const Descuentos: React.FC<DescuentosProps> = ({ className = "" }) => {
   return (
-    <div
-      className={`bg-white dark:bg-gray-800 text-black dark:text-white p-4 rounded-xl shadow h-full min-h-[100px] ${className}`}>
-      <h2 className="text-xl font-bold mb-2">🛒 Descuentos del Día</h2>
-      <ul className="space-y-2 text-sm">
-        {mockDescuentos.map((item, idx) => (
-          <li key={idx}>
-            <span className="font-semibold">{item.supermercado}:</span>{" "}
-            {item.promo}
-          </li>
-        ))}
-      </ul>
+    <div className={className}>
+      <Card title="Descuentos del Día" icon="🛒">
+        <ul className="divide-y divide-gray-200 dark:divide-gray-700 text-sm">
+          {mockDescuentos.map((item, idx) => (
+            <li key={idx} className="py-2">
+              <span className="font-semibold">{item.supermercado}:</span>{" "}
+              {item.promo}
+            </li>
+          ))}
+        </ul>
+      </Card>
     </div>
   );
 };

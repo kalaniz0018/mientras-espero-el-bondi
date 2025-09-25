@@ -1,5 +1,6 @@
 import React from "react";
 import { mockFeriado } from "../mocks/mockData";
+import { Card } from "./UI/Card";
 
 type NextFeriadoProps = {
   className?: string;
@@ -13,13 +14,14 @@ export const NextFeriado: React.FC<NextFeriadoProps> = ({ className = "" }) => {
   const daysLeft = Math.ceil(diffInTime / (1000 * 3600 * 24));
 
   return (
-    <div className={`bg-white dark:bg-gray-800 text-black dark:text-white p-4 rounded-xl shadow h-full min-h-[100px] ${className}`}>
-      <h2 className="text-xl font-bold mb-2">🇦🇷 Próximo Feriado</h2>
-      <p className="font-semibold">{mockFeriado.name}</p>
-      <p>{feriadoDate.toLocaleDateString("es-AR")}</p>
-      <p className="text-sm text-gray-600 dark:text-gray-300">
-        {daysLeft} días restantes
-      </p>
+    <div className={className}>
+      <Card title="Próximo Feriado" icon="🇦🇷">
+        <p className="font-semibold">{mockFeriado.name}</p>
+        <p>{feriadoDate.toLocaleDateString("es-AR")}</p>
+        <p className="text-sm text-gray-600 dark:text-gray-300">
+          {daysLeft} días restantes
+        </p>
+      </Card>
     </div>
   );
 };
