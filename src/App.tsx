@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Weather } from "./components/Weather";
+import { Weather } from "./components/Weather/Weather";
 import { News } from "./components/News";
 import { Efemerides } from "./components/Efemerides";
 import { NextFeriado } from "./components/NextFeriado/NextFeriado";

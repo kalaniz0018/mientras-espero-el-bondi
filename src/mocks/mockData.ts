@@ -1,7 +1,19 @@
 export const mockWeather = {
-  temperature: "22°C",
-  condition: "Soleado",
   location: "Buenos Aires",
+  temperature: "29°C",        // puede venir como string con unidad
+  feelsLike: "32°C",          // idem
+  condition: "Soleado",       // probá con "Lluvia", "Tormenta", "Nublado", etc.
+  precipitationProb: "10%",   // 0–100
+  windKmh: "18 km/h",
+  uvIndex: "7",
+  humidity: "55%",
+
+  // Pronóstico muy breve por parte del día (opcional)
+  forecast: [
+    { period: "mañana", min: "20", max: "27", pop: "10" },
+    { period: "tarde",  min: "27", max: "31", pop: "20" },
+    { period: "noche",  min: "22", max: "25", pop: "5"  },
+  ],
 };
 
 export const mockNews = [
