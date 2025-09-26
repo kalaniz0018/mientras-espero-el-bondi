@@ -1,6 +1,6 @@
 // Selección del próximo feriado y cálculo de estados
 
-import { addOneYear, atMidnight, daysBetween, parseLocalDate } from "./feriado_date";
+import { addOneYear, atMidnight, daysBetween, parseLocalDate } from "./FeriadoDate";
 
 export type RawFeriado = { name: string; startDate: string; endDate?: string };
 export type NormalizedFeriado = { name: string; start: Date; end: Date };

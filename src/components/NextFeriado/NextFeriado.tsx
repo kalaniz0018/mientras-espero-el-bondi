@@ -2,10 +2,10 @@ import React from "react";
 import { Card } from "../UI/Card";
 import { mockFeriado } from "../../mocks/mockData";
 
-import { pickFeriadoIcon } from "./feriado_icons";
-import { buildFeriadoMessage, buildFeriadoTitle } from "./feriado_messages";
-import { getNextFeriadoData } from "./feriado_logic";
-import { atMidnight, formatLargo } from "./feriado_date";
+import { pickFeriadoIcon } from "./FeriadoIcons";
+import { buildFeriadoMessage, buildFeriadoTitle } from "./FeriadoMessages";
+import { getNextFeriadoData } from "./FeriadoLogic";
+import { atMidnight, formatLargo } from "./FeriadoDate";
 
 type NextFeriadoProps = {
   className?: string;

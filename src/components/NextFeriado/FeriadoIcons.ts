@@ -1,6 +1,6 @@
 // Íconos por palabra clave + estaciones
 
-import { atMidnight } from "./feriado_date";
+import { atMidnight } from "./FeriadoDate";
 
 const ICON_KEYWORDS: Array<[RegExp, string]> = [
   [/bandera/i, "🇦🇷"],
