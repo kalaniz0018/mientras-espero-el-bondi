@@ -81,7 +81,7 @@ export const NextFeriado: React.FC<NextFeriadoProps> = ({ className = "" }) => {
         ) : (
           // Futuro: countdown
           <div className="flex items-baseline gap-3 mb-3">
-            <span className="text-5xl sm:text-6xl font-extrabold leading-none tracking-tight">
+            <span className="text-8xl font-extrabold leading-none tracking-tight">
               {heroNumber}
             </span>
             <span className="text-sm sm:text-base text-gray-600 dark:text-gray-300">
