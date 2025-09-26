@@ -10,11 +10,9 @@ type MsgParams = {
 };
 
 export const buildFeriadoTitle = ({ isOngoing, isStartToday, name }: TitleParams) => {
-  if (isOngoing && isStartToday) {
-    return `🎉 ¡Hoy es ${name}!`;
-  }
-  if (isOngoing) return "Feriado en curso";
-  return "Próximo Feriado";
+  if (isOngoing && isStartToday) return `🎉 ¡Hoy es ${name}!`;     // día 1
+  if (isOngoing) return `🎉 ${name}`;                              // en curso (no día 1)
+  return "Próximo feriado";                                        // futuro
 };
 
 export const buildFeriadoMessage = ({
@@ -29,6 +27,7 @@ export const buildFeriadoMessage = ({
     if (/navidad/i.test(name)) return "¡Feliz Navidad! 🎄 Disfrutá con los tuyos.";
     if (/año nuevo/i.test(name)) return "¡Feliz Año! ✨";
     if (/carnaval/i.test(name)) return "¡A disfrutar del Carnaval! 🎭";
+    if (/bandera/i.test(name)) return "Orgullo celeste y blanco. 🇦🇷";
     return "¡A disfrutar del día libre! ✨";
   }
 
@@ -37,5 +36,6 @@ export const buildFeriadoMessage = ({
     return durationDays > 1 ? "Feriado largo en marcha" : "Feriado en marcha";
   }
 
-  return ""; // cuando es futuro, dejamos sólo el conteo + fecha
+  // Futuro: dejamos solo countdown + fecha para no sobrecargar
+  return "";
 };

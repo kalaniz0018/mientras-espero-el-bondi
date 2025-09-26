@@ -3,11 +3,11 @@
 import { atMidnight } from "./FeriadoDate";
 
 const ICON_KEYWORDS: Array<[RegExp, string]> = [
-  [/bandera/i, "🇦🇷"],
+  [/bandera/i, ""],
   [/carnaval/i, "🎭"],
   [/malvinas|veteranos/i, "🎖️"],
   [/independencia/i, "🎆"],
-  [/revolución de mayo/i, "🇦🇷"],
+  [/revolución de mayo/i, ""],
   [/trabajo/i, "🛠️"],
   [/san mart[ií]n/i, "🫡"],
   [/diversidad cultural|raza/i, "🌎"],
