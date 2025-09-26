@@ -45,7 +45,7 @@ export const mockFeriado = [
   { name: "Día de la Soberanía Nacional", startDate: "2025-11-20" },
 
   { name: "Inmaculada Concepción", startDate: "2025-12-08" },
-  { name: "Navidad", startDate: "2025-09-25" },
+  { name: "Navidad", startDate: "2025-12-25" },
 
   // === EVENTOS ESTACIONALES ===
   { name: "Comienza el Otoño", startDate: "2025-03-20" },
