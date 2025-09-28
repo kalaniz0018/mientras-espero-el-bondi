@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Weather } from "./components/Weather/Weather";
 import { News } from "./components/News/News";
-import { Efemerides } from "./components/Efemerides";
 import { NextFeriado } from "./components/NextFeriado/NextFeriado";
 import { Dolar } from "./components/Dolar/Dolar";
 import { Horoscopo } from "./components/Horoscopo";
 import { Descuentos } from "./components/Descuentos/Descuentos";
+import { Efemerides } from "./components/Efemerides/Efemerides";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
