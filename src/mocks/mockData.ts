@@ -1,3 +1,28 @@
+export type DiscountItem = {
+  supermercado: string;
+  promo: string;
+  days?: number[];
+  url?: string;
+};
+
+export const mockDescuentos: DiscountItem[] = [
+  {
+    supermercado: "Carrefour",
+    promo: "20% de descuento con tarjetas Visa los miércoles",
+  },
+  {
+    supermercado: "Coto",
+    promo: "2x1 en carnes seleccionadas (solo lunes y martes)",
+  },
+  {
+    supermercado: "Día",
+    promo: "15% con Cuenta DNI de lunes a jueves",
+  },
+];
+
+
+
+
 export const mockWeather = {
   location: "Buenos Aires",
   temperature: "29°C",        // puede venir como string con unidad
@@ -72,17 +97,3 @@ export const mockHoroscopo = {
     "Hoy es un buen día para tomar decisiones importantes y enfocarte en tus metas personales.",
 };
 
-export const mockDescuentos = [
-  {
-    supermercado: "Carrefour",
-    promo: "20% de descuento con tarjetas Visa los miércoles",
-  },
-  {
-    supermercado: "Coto",
-    promo: "2x1 en carnes seleccionadas (solo lunes y martes)",
-  },
-  {
-    supermercado: "Día",
-    promo: "15% con Cuenta DNI de lunes a jueves",
-  },
-];
