@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Weather } from "./components/Weather/Weather";
-import { News } from "./components/News";
+import { News } from "./components/News/News";
 import { Efemerides } from "./components/Efemerides";
 import { NextFeriado } from "./components/NextFeriado/NextFeriado";
-import { Dolar } from "./components/Dolar";
+import { Dolar } from "./components/Dolar/Dolar";
 import { Horoscopo } from "./components/Horoscopo";
 import { Descuentos } from "./components/Descuentos";
 
@@ -36,7 +36,7 @@ function App() {
       <div className="w-full max-w-6xl">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-3">
           <h1 className="text-3xl font-bold text-center sm:text-left">
-            🚌 Mientras Espero el Bondi
+             Mientras Espero
           </h1>
 
           <div className="flex flex-col sm:flex-row sm:items-center sm:gap-4">
@@ -59,10 +59,11 @@ function App() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-6">
-          <News className="sm:col-span-2" />
+          <Dolar className="sm:col-span-1"/>
+          
           <NextFeriado />
           <Weather />
-          <Dolar />
+          <News  />
           <Descuentos />
           <Efemerides />
 

@@ -17,9 +17,9 @@ export const mockWeather = {
 };
 
 export const mockNews = [
-  { title: "El dólar volvió a subir", source: "La Nación" },
-  { title: "Nuevas medidas económicas", source: "Clarín" },
-  { title: "Marchas en el centro", source: "Página 12" },
+  { title: "El dólar volvió a subir", source: "La Nación", url: "https://...", publishedAt: "28/09" },
+  { title: "Nuevas medidas económicas", source: "Clarín", url: "https://...", summary: "El paquete incluye..." },
+  { title: "Marchas en el centro", source: "Página 12", url: "https://..." },
 ];
 
 export const mockEfemerides = [
