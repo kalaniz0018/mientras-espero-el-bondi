@@ -1,6 +1,6 @@
 import React from "react";
-import { mockHoroscopo } from "../mocks/mockData";
-import { Card } from "./UI/Card";
+import { mockHoroscopo } from "../../mocks/mockData";
+import { Card } from "../UI/Card";
 
 type HoroscopoProps = {
   className?: string;

@@ -3,9 +3,10 @@ import { Weather } from "./components/Weather/Weather";
 import { News } from "./components/News/News";
 import { NextFeriado } from "./components/NextFeriado/NextFeriado";
 import { Dolar } from "./components/Dolar/Dolar";
-import { Horoscopo } from "./components/Horoscopo";
 import { Descuentos } from "./components/Descuentos/Descuentos";
 import { Efemerides } from "./components/Efemerides/Efemerides";
+import { Horoscopo } from "./components/Horoscopo/Horoscopo";
+import { Recordatorio } from "./components/Recordatorio/Recordatorio";
 
 function App() {
   useEffect(() => {
@@ -32,13 +33,12 @@ function App() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-6">
           <Dolar />
-
           <NextFeriado />
           <Weather />
           <News />
           <Descuentos />
-
           <Horoscopo />
+          <Recordatorio/>
           <Efemerides className="sm:col-span-2" />
         </div>
       </div>
