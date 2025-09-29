@@ -9,7 +9,6 @@ import { Efemerides } from "./components/Efemerides/Efemerides";
 
 function App() {
   useEffect(() => {
-    // Siempre modo oscuro
     document.documentElement.classList.add("dark");
   }, []);
 
@@ -32,15 +31,15 @@ function App() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-6">
-          <Dolar className="sm:col-span-1" />
+          <Dolar />
 
           <NextFeriado />
           <Weather />
           <News />
           <Descuentos />
-          <Efemerides />
 
-          <Horoscopo className="sm:col-span-2" />
+          <Horoscopo />
+          <Efemerides className="sm:col-span-2" />
         </div>
       </div>
     </div>
