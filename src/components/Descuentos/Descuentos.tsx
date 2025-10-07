@@ -25,8 +25,8 @@ export const Descuentos: React.FC<Props> = ({ className = "" }) => {
 
                 <button
                   onClick={() => setOpen(d)}
+                  onMouseDown={(e) => e.preventDefault()} // evita que el mismo mouse/tap quede “pegado”
                   className="text-emerald-300 text-xs whitespace-nowrap hover:underline ml-2"
-                  aria-label={`Ver detalle de ${d.comercio}`}
                 >
                   Ver más
                 </button>
