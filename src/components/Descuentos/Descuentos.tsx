@@ -1,82 +1,135 @@
-// src/components/Descuentos/Descuentos.tsx
-import React from "react";
+import React, { useState } from "react";
 import { Card } from "../UI/Card";
-import { mockDescuentos } from "../../mocks/mockData";
+import { mockDescuentos, type Descuento } from "../../mocks/mockDescuentos";
 
-type DiscountItem = {
-  supermercado: string;     // ej: "Carrefour"
-  promo: string;            // ej: "20% de descuento con Visa los miércoles"
-  days?: number[];          // opcional: 0=Dom ... 6=Sáb
-  url?: string;             // opcional: link a la promo
+type Props = { className?: string };
+
+/**
+ * Card principal: lista resumida de descuentos del día.
+ * Cada ítem abre un modal con toda la info (bancos, tope, condiciones, etc.).
+ */
+export const Descuentos: React.FC<Props> = ({ className = "" }) => {
+  const [open, setOpen] = useState<Descuento | null>(null);
+
+  return (
+    <div className={className}>
+      <Card title="Descuentos del Día" icon="🛒">
+        <ul className="text-sm">
+          {mockDescuentos.map((d, idx) => (
+            <li key={d.id} className="py-2 first:pt-0 last:pb-0">
+              <div className="flex items-start gap-3 rounded-md px-2 py-2 hover:bg-white/5 transition">
+                <div className="flex-1 min-w-0">
+                  <p className="font-semibold text-gray-100">{d.comercio}</p>
+                  <p className="text-gray-300">{d.resumen}</p>
+                </div>
+
+                <button
+                  onClick={() => setOpen(d)}
+                  className="text-emerald-300 text-xs whitespace-nowrap hover:underline ml-2"
+                  aria-label={`Ver detalle de ${d.comercio}`}
+                >
+                  Ver más
+                </button>
+              </div>
+
+              {idx < mockDescuentos.length - 1 && (
+                <div className="mt-2 h-px bg-gray-700/20" />
+              )}
+            </li>
+          ))}
+        </ul>
+
+        {/* Modal de detalle */}
+        {open && (
+          <div
+            role="dialog"
+            aria-modal="true"
+            className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4"
+            onClick={() => setOpen(null)}
+          >
+            <div
+              className="w-full max-w-lg rounded-2xl bg-gray-900 border border-white/10 p-4"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Header */}
+              <div className="flex items-center justify-between gap-3 mb-2">
+                <div>
+                  <h3 className="text-lg font-semibold">{open.comercio}</h3>
+                  <p className="text-sm text-emerald-300">{open.titulo}</p>
+                </div>
+                <button
+                  onClick={() => setOpen(null)}
+                  className="text-gray-400 hover:text-gray-200 text-sm"
+                >
+                  Cerrar
+                </button>
+              </div>
+
+              {/* Cuerpo */}
+              <div className="space-y-3 text-sm text-gray-200">
+                <div className="flex flex-wrap gap-2">
+                  <Badge label="Días" />
+                  <p className="text-gray-300">{open.dias.join(", ")}</p>
+                </div>
+
+                <div className="flex flex-wrap gap-2">
+                  <Badge label="Medios" />
+                  <p className="text-gray-300">{open.medios.join(" • ")}</p>
+                </div>
+
+                {open.topeReintegro && (
+                  <div className="flex flex-wrap gap-2">
+                    <Badge label="Tope" />
+                    <p className="text-gray-300">{open.topeReintegro}</p>
+                  </div>
+                )}
+
+                {open.vigencia && (
+                  <div className="flex flex-wrap gap-2">
+                    <Badge label="Vigencia" />
+                    <p className="text-gray-300">{open.vigencia}</p>
+                  </div>
+                )}
+
+                {open.condiciones?.length ? (
+                  <div>
+                    <p className="font-medium text-emerald-300 mb-1">
+                      Condiciones
+                    </p>
+                    <ul className="list-disc list-inside text-gray-300 space-y-1">
+                      {open.condiciones.map((c, i) => (
+                        <li key={i}>{c}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
+
+                {open.legalesUrl && (
+                  <div>
+                    <a
+                      href={open.legalesUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-emerald-300 hover:underline text-xs"
+                    >
+                      Ver legales del comercio
+                    </a>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+      </Card>
+    </div>
+  );
 };
 
-type DescuentosProps = { className?: string };
-
-/* --- Helpers UI --- */
-const todayIdx = new Date().getDay();
-
-const appliesToday = (d?: number[]) => (Array.isArray(d) ? d.includes(todayIdx) : false);
-
-function highlightPromo(promo: string): React.ReactNode {
-  // Resalta porcentajes y "2x1" sin romper accesibilidad
-  const parts = promo.split(/(\b\d{1,2}%|\b2x1\b)/gi);
-  return parts.map((p, i) =>
-    /\b\d{1,2}%|\b2x1\b/i.test(p) ? (
-      <strong key={i} className="text-gray-100">
-        {p}
-      </strong>
-    ) : (
-      <span key={i}>{p}</span>
-    )
+/* ===== Sub-componente interno simple para la “etiqueta” de fila ===== */
+function Badge({ label }: { label: string }) {
+  return (
+    <span className="inline-flex items-center rounded-md bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 px-2 py-0.5 text-[11px] font-medium">
+      {label}
+    </span>
   );
 }
-
-export const Descuentos: React.FC<DescuentosProps> = ({ className = "" }) => {
-  // Tipar suave para que sea compatible con tu mock actual
-  const items: DiscountItem[] = mockDescuentos;
-
-  // Orden: primero los que aplican hoy
-  const sorted = [...items].sort((a, b) => Number(appliesToday(b.days)) - Number(appliesToday(a.days)));
-
-return (
-  <div className={className}>
-    <Card title="Descuentos del Día" icon="🛒">
-      {sorted.length === 0 ? (
-        <div className="text-sm text-gray-400 py-6 px-2">
-          No hay descuentos cargados por ahora.
-        </div>
-      ) : (
-        <ul className="divide-y divide-gray-200/10 dark:divide-gray-700/40 text-sm">
-          {sorted.map((item, idx) => {
-            const Wrapper: React.ElementType = item.url ? "a" : "div";
-
-            return (
-              <li key={idx} className="py-3 first:pt-0 last:pb-0">
-                <Wrapper
-                  href={item.url}
-                  target={item.url ? "_blank" : undefined}
-                  rel={item.url ? "noopener noreferrer" : undefined}
-                  className="group block rounded-md px-2 hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 transition"
-                >
-                  {/* supermercado como subtítulo */}
-                  <h3 className="font-semibold text-base text-gray-100 mb-1">
-                    {item.supermercado}
-                  </h3>
-
-                  {/* promo */}
-                  <p className="text-gray-300 group-hover:underline underline-offset-2">
-                    {highlightPromo(item.promo)}
-                  </p>
-                </Wrapper>
-              </li>
-            );
-          })}
-        </ul>
-      )}
-    </Card>
-  </div>
-);
-
-
-
-};

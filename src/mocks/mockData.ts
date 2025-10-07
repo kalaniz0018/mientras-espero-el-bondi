@@ -5,7 +5,7 @@ export type DiscountItem = {
   url?: string;
 };
 
-export const mockDescuentos: DiscountItem[] = [
+/* export const mockDescuentos: DiscountItem[] = [
   {
     supermercado: "Carrefour",
     promo: "20% de descuento con tarjetas Visa los miércoles",
@@ -19,7 +19,7 @@ export const mockDescuentos: DiscountItem[] = [
     promo: "15% con Cuenta DNI de lunes a jueves",
   },
 ];
-
+ */
 
 
 
