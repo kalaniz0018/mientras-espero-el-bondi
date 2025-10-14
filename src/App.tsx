@@ -1,5 +1,5 @@
 // src/App.tsx
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDashboardPrefs } from "./hooks/useDashboardPrefs";
 import { SettingsDrawer } from "./components/Settings/SettingsDrawer";
 import { WIDGETS } from "./widgets/registry";
