@@ -1,7 +1,11 @@
 // src/components/Weather/WeatherLogic.ts
+import type {
+  RawWeatherData,
+  WeatherData,
+  WeatherForecastItem,
+} from "./WeatherTypes";
 
-import type { RawWeatherData, WeatherData, WeatherForecastItem } from "./WeatherTypes";
-
+const ORDER: WeatherForecastItem["period"][] = ["mañana", "tarde", "noche"]; // orden fijo
 
 const toNum = (v: unknown): number => {
   if (typeof v === "number") return v;
@@ -13,25 +17,34 @@ const toNum = (v: unknown): number => {
 };
 
 export const normalizeWeather = (raw: RawWeatherData): WeatherData => {
+  const forecast = Array.isArray(raw.forecast)
+    ? (raw.forecast as RawWeatherData[])
+        .map(
+          (f): WeatherForecastItem => ({
+            period: f.period as WeatherForecastItem["period"],
+            min: toNum(f.min),
+            max: toNum(f.max),
+            pop: f.pop !== undefined ? toNum(f.pop) : undefined,
+          })
+        )
+        .filter((f) => !Number.isNaN(f.min) && !Number.isNaN(f.max))
+        .sort(
+          (a, b) => ORDER.indexOf(a.period) - ORDER.indexOf(b.period) // ← orden garantizado
+        )
+    : undefined;
+
   return {
     location: (raw.location as string) ?? "Cerca tuyo",
     temperature: toNum(raw.temperature),
     feelsLike: raw.feelsLike !== undefined ? toNum(raw.feelsLike) : undefined,
     condition: (raw.condition as string) ?? "—",
     precipitationProb:
-      raw.precipitationProb !== undefined ? toNum(raw.precipitationProb) : undefined,
+      raw.precipitationProb !== undefined
+        ? toNum(raw.precipitationProb)
+        : undefined,
     windKmh: raw.windKmh !== undefined ? toNum(raw.windKmh) : undefined,
     uvIndex: raw.uvIndex !== undefined ? toNum(raw.uvIndex) : undefined,
     humidity: raw.humidity !== undefined ? toNum(raw.humidity) : undefined,
-    forecast: Array.isArray(raw.forecast)
-      ? (raw.forecast as RawWeatherData[])
-          .map((f): WeatherForecastItem => ({
-            period: f.period as WeatherForecastItem["period"],
-            min: toNum(f.min),
-            max: toNum(f.max),
-            pop: f.pop !== undefined ? toNum(f.pop) : undefined,
-          }))
-          .filter((f) => !Number.isNaN(f.min) && !Number.isNaN(f.max))
-      : undefined,
+    forecast,
   };
 };

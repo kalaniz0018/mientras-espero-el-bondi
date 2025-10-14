@@ -5,45 +5,21 @@ export type DiscountItem = {
   url?: string;
 };
 
-/* export const mockDescuentos: DiscountItem[] = [
-  {
-    supermercado: "Carrefour",
-    promo: "20% de descuento con tarjetas Visa los miércoles",
-  },
-  {
-    supermercado: "Coto",
-    promo: "2x1 en carnes seleccionadas (solo lunes y martes)",
-  },
-  {
-    supermercado: "Día",
-    promo: "15% con Cuenta DNI de lunes a jueves",
-  },
-];
- */
 
-
-
-export const mockWeather = {
-  location: "Buenos Aires",
-  temperature: "29°C",        // puede venir como string con unidad
-  feelsLike: "32°C",          // idem
-  condition: "Soleado",       // probá con "Lluvia", "Tormenta", "Nublado", etc.
-  precipitationProb: "10%",   // 0–100
-  windKmh: "18 km/h",
-  uvIndex: "7",
-  humidity: "55%",
-
-  // Pronóstico muy breve por parte del día (opcional)
-  forecast: [
-    { period: "mañana", min: "20", max: "27", pop: "10" },
-    { period: "tarde",  min: "27", max: "31", pop: "20" },
-    { period: "noche",  min: "22", max: "25", pop: "5"  },
-  ],
-};
 
 export const mockNews = [
-  { title: "El dólar volvió a subir", source: "La Nación", url: "https://...", publishedAt: "28/09" },
-  { title: "Nuevas medidas económicas", source: "Clarín", url: "https://...", summary: "El paquete incluye..." },
+  {
+    title: "El dólar volvió a subir",
+    source: "La Nación",
+    url: "https://...",
+    publishedAt: "28/09",
+  },
+  {
+    title: "Nuevas medidas económicas",
+    source: "Clarín",
+    url: "https://...",
+    summary: "El paquete incluye...",
+  },
   { title: "Marchas en el centro", source: "Página 12", url: "https://..." },
 ];
 
@@ -60,7 +36,10 @@ export const mockFeriado = [
   // Carnaval (2 días)
   { name: "Carnaval", startDate: "2025-03-03", endDate: "2025-03-04" },
 
-  { name: "Día Nacional de la Memoria por la Verdad y la Justicia", startDate: "2025-03-24" },
+  {
+    name: "Día Nacional de la Memoria por la Verdad y la Justicia",
+    startDate: "2025-03-24",
+  },
 
   { name: "Viernes Santo", startDate: "2025-04-18" },
 
@@ -96,4 +75,3 @@ export const mockHoroscopo = {
   mensaje:
     "Hoy es un buen día para tomar decisiones importantes y enfocarte en tus metas personales.",
 };
-
