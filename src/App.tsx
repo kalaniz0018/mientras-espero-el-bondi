@@ -15,32 +15,39 @@ function App() {
   // Estado local para abrir/cerrar el panel de configuración
   const [drawerOpen, setDrawerOpen] = useState(false);
 
+  const fullDate = new Date().toLocaleDateString("es-AR", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
   return (
     <div className="min-h-screen bg-gray-900 py-6 px-4 flex justify-center text-white">
       <div className="w-full max-w-6xl">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-3">
-          <h1 className="text-3xl font-bold text-center sm:text-left">
-            Mientras Espero el bondi
-          </h1>
+        <div className="mb-6">
+          {/* Título + ⚙️ */}
+          <div className="relative">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold leading-tight tracking-tight text-center sm:text-left pr-10">
+              Mientras Espero el bondi
+            </h1>
 
-          <div className="flex items-center gap-3 justify-center sm:justify-end">
-            <p className="text-sm text-gray-300 hidden sm:block">
-              {new Date().toLocaleDateString("es-AR", {
-                weekday: "long",
-                day: "numeric",
-                month: "long",
-                year: "numeric",
-              })}
-            </p>
+            {/* ⚙️: fijo arriba derecha en mobile, alineado en desktop */}
             <button
               onClick={() => setDrawerOpen(true)}
-              className="text-gray-400 hover:text-white text-xl"
+              className="absolute right-0 top-1.5 sm:top-0 text-gray-400 hover:text-white text-xl"
               title="Configurar widgets"
+              aria-label="Configurar widgets"
             >
               ⚙️
             </button>
           </div>
+
+          {/* Fecha completa */}
+          <p className="mt-2 text-xs sm:text-sm text-gray-300 text-center sm:text-right leading-snug capitalize">
+            {fullDate}
+          </p>
         </div>
 
         {/* Grilla de widgets visibles */}
