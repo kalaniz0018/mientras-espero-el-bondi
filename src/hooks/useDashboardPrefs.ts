@@ -10,11 +10,6 @@ type PrefsState = {
   order: WidgetId[];
 };
 
-/**
- * Hook de preferencias del dashboard (visibilidad y orden)
- * - Carga desde localStorage
- * - Persiste automáticamente
- */
 export function useDashboardPrefs() {
   const buildDefaults = (): PrefsState => ({
     visibleById: Object.fromEntries(
