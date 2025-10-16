@@ -22,55 +22,79 @@ function App() {
     year: "numeric",
   });
 
-  return (
-    <div className="min-h-screen bg-gray-900 py-6 px-4 flex justify-center text-white">
-      <div className="w-full max-w-6xl">
-        {/* Header */}
-        <div className="mb-6">
-          {/* Título + ⚙️ */}
-          <div className="relative">
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold leading-tight tracking-tight text-center sm:text-left pr-10">
-              Mientras Espero el bondi
-            </h1>
+return (
+  <div className="min-h-screen bg-gray-900 py-6 px-4 flex justify-center text-white">
+    <div className="w-full max-w-6xl">
+      {/* NAVBAR PRINCIPAL */}
+      <header className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8">
+        {/* Contenedor título + hamburguesa */}
+        <div className="flex items-center justify-center sm:justify-between w-full relative">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-center sm:text-left flex-1">
+            Mientras Espero el bondi
+          </h1>
 
-            {/* ⚙️: fijo arriba derecha en mobile, alineado en desktop */}
-            <button
-              onClick={() => setDrawerOpen(true)}
-              className="absolute right-0 top-1.5 sm:top-0 text-gray-400 hover:text-white text-xl"
-              title="Configurar widgets"
-              aria-label="Configurar widgets"
-            >
-              ⚙️
-            </button>
-          </div>
+          {/* Ícono hamburguesa (mobile) */}
+          <button
+            onClick={() => setDrawerOpen(true)}
+            className="sm:hidden text-gray-300 hover:text-white text-2xl p-2 transition absolute right-0 top-1/2 -translate-y-1/2"
+            aria-label="Abrir menú"
+          >
+            ☰
+          </button>
 
-          {/* Fecha completa */}
-          <p className="mt-2 text-xs sm:text-sm text-gray-300 text-center sm:text-right leading-snug capitalize">
-            {fullDate}
-          </p>
+          {/* Menú desktop */}
+          <ul className="hidden sm:flex items-center gap-6 text-sm">
+            <li>
+              <button
+                onClick={() => setDrawerOpen(true)}
+                className="flex items-center gap-1 hover:text-emerald-400 transition"
+              >
+                ⚙️ <span>Configuración</span>
+              </button>
+            </li>
+            <li>
+              <button className="hover:text-emerald-400 transition">
+                Iniciar sesión
+              </button>
+            </li>
+            <li>
+              <button className="hover:text-emerald-400 transition">
+                Acerca de
+              </button>
+            </li>
+          </ul>
         </div>
+      </header>
 
-        {/* Grilla de widgets visibles */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-6">
-          {order.map((id) => {
-            const widget = WIDGETS.find((w) => w.id === id);
-            if (!widget || !visibleById[id]) return null;
-            const Component = widget.component;
-            return <Component key={id} />;
-          })}
-        </div>
+      {/* Fecha debajo del título */}
+      <p className="text-xs sm:text-sm text-gray-300 text-center sm:text-right mb-4 capitalize">
+        {fullDate}
+      </p>
 
-        {/* Drawer lateral de configuración */}
-        <SettingsDrawer
-          isOpen={drawerOpen}
-          onClose={() => setDrawerOpen(false)}
-          visibleById={visibleById}
-          toggle={toggle}
-          reset={reset}
-        />
-      </div>
+      {/* GRILLA DE WIDGETS */}
+      <main className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-6">
+        {order.map((id) => {
+          const widget = WIDGETS.find((w) => w.id === id);
+          if (!widget || !visibleById[id]) return null;
+          const Component = widget.component;
+          return <Component key={id} />;
+        })}
+      </main>
+
+      {/* DRAWER DE CONFIGURACIÓN */}
+      <SettingsDrawer
+        isOpen={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+        visibleById={visibleById}
+        toggle={toggle}
+        reset={reset}
+      />
     </div>
-  );
+  </div>
+);
+
+
+
 }
 
 export default App;
