@@ -1,8 +1,7 @@
-// src/App.tsx
 import { useEffect } from "react";
 import { useDashboardPrefs } from "./hooks/useDashboardPrefs";
 import { WIDGETS } from "./widgets/registry";
-import { SettingsLauncher } from "./components/Settings/SettingsLauncher";
+import { Launcher } from "./Menu/Launcher";
 
 function App() {
   useEffect(() => {
@@ -26,31 +25,11 @@ function App() {
             Mientras espero el 🚌
           </div>
 
-          <nav className="hidden sm:flex items-center gap-6 text-sm">
-            <button
-              onClick={() => window.openSettings?.("config")}
-              className="hover:text-emerald-400 transition"
-            >
-              Config
-            </button>
-            <button
-              onClick={() => window.openSettings?.("user")}
-              className="hover:text-emerald-400 transition"
-            >
-              Usuario
-            </button>
-            <button
-              onClick={() => window.openSettings?.("theme")}
-              className="hover:text-emerald-400 transition"
-            >
-              Tema
-            </button>
-            <button
-              onClick={() => window.openSettings?.("about")}
-              className="hover:text-emerald-400 transition"
-            >
-              Acerca
-            </button>
+        <nav className="hidden sm:flex items-center gap-6 text-sm">
+            <button onClick={() => window.openSettings?.("config")} className="hover:text-emerald-400 transition">Config</button>
+            <button onClick={() => window.openSettings?.("user")} className="hover:text-emerald-400 transition">Usuario</button>
+            <button onClick={() => window.openSettings?.("theme")} className="hover:text-emerald-400 transition">Tema</button>
+            <button onClick={() => window.openSettings?.("about")} className="hover:text-emerald-400 transition">Acerca</button>
           </nav>
 
           <button
@@ -80,11 +59,7 @@ function App() {
         </div>
       </main>
 
-      <SettingsLauncher
-        visibleById={visibleById}
-        toggle={toggle}
-        reset={reset}
-      />
+      <Launcher visibleById={visibleById} toggle={toggle} reset={reset} />
     </div>
   );
 }

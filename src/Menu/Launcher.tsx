@@ -1,11 +1,13 @@
-// src/components/Settings/SettingsLauncher.tsx
 import React, { useState, useEffect } from "react";
-import { type WidgetId } from "../../widgets/registry";
-import { SettingsContent } from "./SettingsContent";
+import { SettingsPanel } from "./Settings/SettingsPanel";
+import { UserPanel } from "./User/UserPanel";
+import { ThemePanel } from "./Theme/Theme";
+import { AboutPanel } from "./About/AboutPanel";
+import { type WidgetId } from "../widgets/registry";
 
 type Panel = "config" | "user" | "theme" | "about";
 
-type SettingsLauncherProps = {
+type Props = {
   visibleById: Record<WidgetId, boolean>;
   toggle: (id: WidgetId) => void;
   reset: () => void;
@@ -17,11 +19,7 @@ declare global {
   }
 }
 
-export const SettingsLauncher: React.FC<SettingsLauncherProps> = ({
-  visibleById,
-  toggle,
-  reset,
-}) => {
+export const Launcher: React.FC<Props> = ({ visibleById, toggle, reset }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activePanel, setActivePanel] = useState<Panel>("config");
   const [isMobile, setIsMobile] = useState(false);
@@ -59,7 +57,7 @@ export const SettingsLauncher: React.FC<SettingsLauncherProps> = ({
         onClick={() => setIsOpen(false)}
       />
 
-      {/* Desktop: panel individual (sin tabs) */}
+      {/* Desktop: panel individual */}
       {!isMobile && (
         <div className="fixed top-0 right-0 h-full w-80 bg-gray-800 text-gray-100 z-50 shadow-lg">
           <div className="flex items-center justify-between px-4 py-4 border-b border-gray-700">
@@ -80,13 +78,12 @@ export const SettingsLauncher: React.FC<SettingsLauncherProps> = ({
             </button>
           </div>
 
-          <SettingsContent
-            activeTab={activePanel}
-            mode="compact"
-            visibleById={visibleById}
-            toggle={toggle}
-            reset={reset}
-          />
+          {activePanel === "config" && (
+            <SettingsPanel visibleById={visibleById} toggle={toggle} reset={reset} />
+          )}
+          {activePanel === "user" && <UserPanel />}
+          {activePanel === "theme" && <ThemePanel />}
+          {activePanel === "about" && <AboutPanel />}
         </div>
       )}
 
@@ -123,10 +120,6 @@ export const SettingsLauncher: React.FC<SettingsLauncherProps> = ({
                       : "text-gray-300 hover:bg-gray-700"
                   }`}
                 >
-                  {tab === "config" && <span>⚙️</span>}
-                  {tab === "user" && <span>👤</span>}
-                  {tab === "theme" && <span>🎨</span>}
-                  {tab === "about" && <span>ℹ️</span>}
                   {tab === "config"
                     ? "Config"
                     : tab === "user"
@@ -139,13 +132,12 @@ export const SettingsLauncher: React.FC<SettingsLauncherProps> = ({
             </aside>
 
             <main className="flex-1 overflow-y-auto p-4">
-              <SettingsContent
-                activeTab={activePanel}
-                mode="drawer"
-                visibleById={visibleById}
-                toggle={toggle}
-                reset={reset}
-              />
+              {activePanel === "config" && (
+                <SettingsPanel visibleById={visibleById} toggle={toggle} reset={reset} />
+              )}
+              {activePanel === "user" && <UserPanel />}
+              {activePanel === "theme" && <ThemePanel />}
+              {activePanel === "about" && <AboutPanel />}
             </main>
           </div>
         </div>
@@ -153,3 +145,14 @@ export const SettingsLauncher: React.FC<SettingsLauncherProps> = ({
     </>
   );
 };
+
+
+/* El Launcher ahora es el “contenedor general del menú”, 
+Abre y cierra el panel lateral.
+Sabe qué pestaña (config, usuario, tema, etc.) está activa.
+Decide si mostrar un solo panel (desktop) o el drawer vertical (mobile).
+
+Launcher = el cerebro del menú.
+Los paneles (SettingsPanel, UserPanel, ThemePanel, etc.) 
+son como “pantallitas” que el launcher muestra según la pestaña elegida.
+*/
