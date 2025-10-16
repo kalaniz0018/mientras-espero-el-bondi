@@ -22,66 +22,65 @@ function App() {
     year: "numeric",
   });
 
-return (
-  <div className="min-h-screen bg-gray-900 py-6 px-4 flex justify-center text-white">
-    <div className="w-full max-w-6xl">
-      {/* NAVBAR PRINCIPAL */}
-      <header className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8">
-        {/* Contenedor título + hamburguesa */}
-        <div className="flex items-center justify-center sm:justify-between w-full relative">
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-center sm:text-left flex-1">
-            Mientras Espero el bondi
-          </h1>
+  return (
+    <div className="min-h-screen bg-gray-900 text-white">
+      {/* NAVBAR (única barra superior, escalable) */}
+      <header className="sticky top-0 z-50 bg-gray-900/95 backdrop-blur border-b border-gray-800">
+        <div className="mx-auto max-w-6xl px-4 h-14 flex items-center justify-between">
+          {/* Título corto a la izquierda */}
+          <div className="text-lg sm:text-xl font-extrabold tracking-tight">
+            Mientras espero el 🚌
+          </div>
 
-          {/* Ícono hamburguesa (mobile) */}
+          {/* Acciones en desktop (4 por ahora) */}
+          <nav className="hidden sm:flex items-center gap-6 text-sm">
+            <button
+              onClick={() => setDrawerOpen(true)}
+              className="hover:text-emerald-400 transition"
+            >
+              Config
+            </button>
+            <button className="hover:text-emerald-400 transition">
+              Usuario
+            </button>
+            <button className="hover:text-emerald-400 transition">Tema</button>
+            <button className="hover:text-emerald-400 transition">
+              Acerca
+            </button>
+          </nav>
+
+          {/* Hamburguesa en mobile (abre el mismo drawer) */}
           <button
             onClick={() => setDrawerOpen(true)}
-            className="sm:hidden text-gray-300 hover:text-white text-2xl p-2 transition absolute right-0 top-1/2 -translate-y-1/2"
+            className="sm:hidden text-2xl px-2 py-1 hover:text-white text-gray-300"
             aria-label="Abrir menú"
           >
             ☰
           </button>
-
-          {/* Menú desktop */}
-          <ul className="hidden sm:flex items-center gap-6 text-sm">
-            <li>
-              <button
-                onClick={() => setDrawerOpen(true)}
-                className="flex items-center gap-1 hover:text-emerald-400 transition"
-              >
-                ⚙️ <span>Configuración</span>
-              </button>
-            </li>
-            <li>
-              <button className="hover:text-emerald-400 transition">
-                Iniciar sesión
-              </button>
-            </li>
-            <li>
-              <button className="hover:text-emerald-400 transition">
-                Acerca de
-              </button>
-            </li>
-          </ul>
         </div>
       </header>
 
-      {/* Fecha debajo del título */}
-      <p className="text-xs sm:text-sm text-gray-300 text-center sm:text-right mb-4 capitalize">
-        {fullDate}
-      </p>
+      {/* CONTENIDO */}
+      <main className="py-6 px-4 flex justify-center">
+        <div className="w-full max-w-6xl">
+          {/* Fecha (discreta) */}
+          <p className="mb-4 text-xs sm:text-sm text-gray-300 text-center sm:text-right capitalize">
+            {fullDate}
+          </p>
 
-      {/* GRILLA DE WIDGETS */}
-      <main className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-6">
-        {order.map((id) => {
-          const widget = WIDGETS.find((w) => w.id === id);
-          if (!widget || !visibleById[id]) return null;
-          const Component = widget.component;
-          return <Component key={id} />;
-        })}
+          {/* Grilla de widgets */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-6">
+            {order.map((id) => {
+              const widget = WIDGETS.find((w) => w.id === id);
+              if (!widget || !visibleById[id]) return null;
+              const Component = widget.component;
+              return <Component key={id} />;
+            })}
+          </div>
+        </div>
       </main>
 
-      {/* DRAWER DE CONFIGURACIÓN */}
+      {/* Drawer lateral (menú maestro / Config) */}
       <SettingsDrawer
         isOpen={drawerOpen}
         onClose={() => setDrawerOpen(false)}
@@ -90,11 +89,7 @@ return (
         reset={reset}
       />
     </div>
-  </div>
-);
-
-
-
+  );
 }
 
 export default App;
