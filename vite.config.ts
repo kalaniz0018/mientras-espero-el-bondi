@@ -5,4 +5,9 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   base: "/mientras-espero-el-bondi/",
+  server: {
+    proxy: {
+      "/api": "http://localhost:4000", // 🔁 redirige al backend local
+    },
+  },
 });

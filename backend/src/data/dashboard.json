@@ -1,0 +1,34 @@
+[
+  {
+    "id": "weather-1",
+    "card": "Weather",
+    "title": "Clima",
+    "location": "Villa del Parque, CABA",
+    "temperatureC": 22,
+    "condition": "sunny",
+    "updatedAtIso": "2025-10-16T18:30:00Z"
+  },
+  {
+    "id": "dolar-1",
+    "card": "Dolar",
+    "title": "Dólar hoy",
+    "oficial": 980,
+    "blue": 1240
+  },
+  {
+    "id": "efemerides-1",
+    "card": "Efemerides",
+    "title": "Efemérides",
+    "items": [
+      { "year": 1813, "text": "Batalla de San Lorenzo", "source": "Wikipedia" }
+    ]
+  },
+  {
+    "id": "nextferiado-1",
+    "card": "NextFeriado",
+    "title": "Próximo feriado",
+    "name": "Día de la Soberanía",
+    "dateIso": "2025-11-18",
+    "isLongWeekend": true
+  }
+]
